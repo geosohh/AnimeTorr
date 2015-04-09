@@ -213,7 +213,7 @@ class WindowMain():
         if self.app_controller.downloader_is_running:
             self.window.hide()
         else:
-            selection = show_yes_no_message("Exit program","Are you sure you want to exit AnimeTorr?")
+            selection = show_yes_no_message("Exit application","Are you sure you want to exit AnimeTorr?")
             if selection == QtGui.QMessageBox.Yes:
                 self.app_controller.quit()
             return selection==QtGui.QMessageBox.Yes

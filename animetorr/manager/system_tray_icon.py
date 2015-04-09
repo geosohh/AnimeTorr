@@ -62,6 +62,6 @@ class SystemTrayIcon(QtGui.QSystemTrayIcon):
         """
         User clicked "Exit" option; close application.
         """
-        selection = show_yes_no_message("Exit program","Are you sure you want to exit AnimeTorr?")
+        selection = show_yes_no_message("Exit application","Are you sure you want to exit AnimeTorr?")
         if selection == QtGui.QMessageBox.Yes:
             self.app_controller.quit()

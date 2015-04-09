@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '../qt/qt_main.ui'
 #
-# Created: Wed Apr 08 21:17:23 2015
+# Created: Wed Apr 08 23:48:02 2015
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -242,7 +242,7 @@ class Ui_MainWindow(object):
         self.button_remove.setText(_translate("MainWindow", "Remove\n"
 "selected", None))
         self.text_anime_status.setText(_translate("MainWindow", "999 anime added, 999 enabled.", None))
-        self.text_downloader_status.setText(_translate("MainWindow", "Starting program...", None))
+        self.text_downloader_status.setText(_translate("MainWindow", "Starting application...", None))
         self.menu_file.setTitle(_translate("MainWindow", "File", None))
         self.menu_downloader.setTitle(_translate("MainWindow", "Anime", None))
         self.menu_help.setTitle(_translate("MainWindow", "Help", None))

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '../qt/qt_about.ui'
 #
-# Created: Wed Apr 08 21:17:23 2015
+# Created: Wed Apr 08 23:48:02 2015
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -295,7 +295,7 @@ class Ui_Dialog(object):
 "<td>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">          </span><img src=\":/images/images/dot.png\" /><span style=\" font-size:10pt;\"> </span></p></td>\n"
 "<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">[Main] window - Sometimes the program would restart after clicking the \'Stop\' button (again)</span></p></td></tr></table>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">[Main] window - Sometimes the application would restart after clicking the \'Stop\' button (again)</span></p></td></tr></table>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\"><br /><br /></span><span style=\" font-size:10pt; font-weight:600;\">Version 3.1.1.0 (Sep 16 2014)</span><span style=\" font-size:10pt;\"><br />     Fixed:</span></p>\n"
 "<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
 "<tr>\n"
@@ -331,7 +331,7 @@ class Ui_Dialog(object):
 "<td>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">          </span><img src=\":/images/images/dot.png\" /><span style=\" font-size:10pt;\"> </span></p></td>\n"
 "<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">[Main] window - Sometimes the program would restart after clicking the \'Stop\' button</span></p></td></tr></table>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">[Main] window - Sometimes the application would restart after clicking the \'Stop\' button</span></p></td></tr></table>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">     Improved:</span></p>\n"
 "<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
 "<tr>\n"
@@ -425,7 +425,7 @@ class Ui_Dialog(object):
 "<td>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">          </span><img src=\":/images/images/dot.png\" /><span style=\" font-size:10pt;\"> </span></p></td>\n"
 "<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Only one instance of the program can be opened</span></p></td></tr></table>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Only one instance of the application can be opened</span></p></td></tr></table>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\"><br /><br /></span><span style=\" font-size:10pt; font-weight:600;\">Version 2.1.3.0 (Apr 16 2013)</span><span style=\" font-size:10pt;\"><br />     Fixed:</span></p>\n"
 "<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
 "<tr>\n"
@@ -741,7 +741,7 @@ class Ui_Dialog(object):
 "<td>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">          </span><img src=\":/images/images/dot.png\" /><span style=\" font-size:10pt;\"> </span></p></td>\n"
 "<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Option to automatically start the program on Windows startup</span></p></td></tr></table>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Option to automatically start the application on Windows startup</span></p></td></tr></table>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\"><br /><br /></span><span style=\" font-size:10pt; font-weight:600; color:#005500;\">Version 1.0.0.0 (Aug 14 2011)</span><span style=\" font-size:10pt;\"><br />     First version of \'Anime&amp;Series Torrent Manager\'</span></p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.changelogTab), _translate("Dialog", "Changelog", None))
         self.credits_browser.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

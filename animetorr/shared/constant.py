@@ -43,6 +43,6 @@ FILEDIALOG_DEFAULT_PATH = os.environ["USERPROFILE"]
 TRAY_MESSAGE_TITLE = "AnimeTorr"
 
 
-# Shortcut created to automatically start this program on Windows startup.
+# Shortcut created to automatically start this application on Windows startup.
 AUTOSTART_SHORTCUT_NAME = "AnimeTorr (start minimized).lnk"
 AUTOSTART_SHORTCUT_DESCRIPTION = "AnimeTorr (start minimized, with system tray icon)"

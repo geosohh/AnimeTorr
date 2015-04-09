@@ -324,7 +324,7 @@ selected</string>
          </size>
         </property>
         <property name="text">
-         <string>Starting program...</string>
+         <string>Starting application...</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

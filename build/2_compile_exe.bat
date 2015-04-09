@@ -16,7 +16,7 @@ pyinstaller --name="AnimeTorr" ^
             --workpath="pyinstaller/build" ^
             --distpath="pyinstaller/dist" ^
             --version-file="version_info.txt" ^
-            "../animetorr/main.py"
+            "../animetorr/animetorr.py"
 
 RD /S /Q pyinstaller\build
 COPY "..\animetorr\dbTemplate.db" "pyinstaller\dist\AnimeTorr\"
