@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/add.png</file>
+	<file>images/dot.png</file>
+	<file>images/icon.png</file>
+	<file>images/loading.gif</file>
+	<file>images/logo.png</file>
+	<file>images/remove.png</file>
+	<file>images/start.png</file>
+    <file>images/start_button_border.png</file>
+    <file>images/start_button_border_pressed.png</file>
+    <file>images/stop_button_border.png</file>
+    <file>images/stop_button_border_pressed.png</file>
+  </qresource>
+</RCC>

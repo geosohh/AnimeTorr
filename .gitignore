@@ -1,0 +1,6 @@
+.idea
+build/pyinstaller
+dist
+
+*.pyc
+*.exe
