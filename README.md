@@ -10,7 +10,7 @@ You can download the application installer for Windows from [here](https://www.g
 Running from source
 -------------------
 
-Requirements are:
+Dependencies are:
 * Python 2.7
 * [PyQT4](http://www.riverbankcomputing.co.uk/software/pyqt/intro)
 * [Requests](http://docs.python-requests.org)
