@@ -296,15 +296,19 @@ class AnimeTable(QtGui.QTableWidget):
         """
         anime.update_enabled(checkbox_state==QtCore.Qt.Checked)
         self.main_window.update_anime_table_status()
+        #self.update_table()
+        #return
 
-        cell_widget = checkbox.parentWidget()  #without this "for", sorting by enabled won't work
+        #without this "for", sorting by enabled won't work
+        cell_widget = checkbox.parentWidget()
         for row in range(0,self.rowCount()):
             if self.cellWidget(row,0)==cell_widget:
-                self.setSortingEnabled(False)
-                self.takeItem(row,0)
-                newitem = MyTableWidgetItem("",checkbox_state==QtCore.Qt.Checked)
-                self.setItem(row, 0, newitem)
-                self.setSortingEnabled(True)
+                #self.setSortingEnabled(False)
+                self.item(row,0).set_key(checkbox_state==QtCore.Qt.Checked)
+                #self.takeItem(row,0)
+                #newitem = MyTableWidgetItem("",checkbox_state==QtCore.Qt.Checked)
+                #self.setItem(row, 0, newitem)
+                #self.setSortingEnabled(True)
 
     def selected_animes(self):
         """
@@ -349,7 +353,7 @@ class AnimeTable(QtGui.QTableWidget):
         else:
             show_ok_message("Search activated","Please stop the search before editing an anime.")
 
-    def update_table(self, anime_list):
+    def update_table(self, anime_list = None):
         """
         Updates (re-creates) the anime table.
 
@@ -358,11 +362,12 @@ class AnimeTable(QtGui.QTableWidget):
         """
         self.setSortingEnabled(False)  #Re-activated later. Otherwise, The table gets messed up
         self.clearContents()
-        self.setRowCount(len(anime_list))
-        self.anime_list = anime_list
+        if anime_list is not None:
+            self.anime_list = anime_list
+        self.setRowCount(len(self.anime_list))
         self.data.clear()
         self.data = {0: [], 1: [], 2: [], 3: []}
-        for anime in anime_list:
+        for anime in self.anime_list:
             self.data[0].append(anime.enabled)
             self.data[1].append(anime.name)
             self.data[2].append(str(anime.episode))
@@ -420,6 +425,19 @@ class MyTableWidgetItem(QtGui.QTableWidgetItem):
         except ValueError:
             pass
         self.sort_key = sort_key
+
+    def set_key(self,new_sort_key):
+        """
+        Updates the sort key (enabled/disabled) with the new value.
+
+        :type new_sort_key: bool
+        :param new_sort_key: New value
+        """
+        try:
+            new_sort_key = int(new_sort_key)
+        except ValueError:
+            pass
+        self.sort_key = new_sort_key
 
     def __lt__(self, other):
         """
