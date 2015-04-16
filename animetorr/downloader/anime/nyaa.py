@@ -6,6 +6,7 @@ __author__ = 'Sohhla'
 
 import sgmllib
 from shared.log import LoggerManager
+import common
 
 
 class Nyaa():
@@ -61,13 +62,9 @@ class Nyaa():
             parser.feed(html)
             parser.close()
         except CleanExit:
-            self.log.info("HTML successfully parsed (%i results)" % (len(parser.dict)))
             return parser.dict
         except Exception as error:
             self.log.print_traceback(error,self.log.error)
-        else:
-            self.log.info("HTML successfully parsed (%i results)" % (len(parser.dict)))
-        #return dic
         return parser.dict
 
     def __parse_html(self,html, dic, search_terms):
@@ -142,19 +139,7 @@ class HTMLparser(sgmllib.SGMLParser):
             self.downloads = int(data)
             self.get_downloads = False
 
-            success = True
-            for term in self.search_terms:
-                temp = term.strip().lower()
-                term = temp.encode("utf-8","ignore")
-                if term[0] is "-":
-                    if term[1:] in self.title.lower():
-                        success = False
-                        break
-                else:
-                    if term not in self.title.lower():
-                        success = False
-                        break
-            if success:
+            if common.terms_match(self.title,self.search_terms):
                 self.dict["n"+str(self.cont)] = {}
                 self.dict["n"+str(self.cont)]["title"] = self.title
                 self.dict["n"+str(self.cont)]["link"] = self.link
@@ -234,22 +219,7 @@ class HTMLparser1Result(sgmllib.SGMLParser):
                     self.link = value
                     self.get_link = False
 
-                    success = True
-                    for term in self.search_terms:
-                        temp = term.strip().lower()
-                        term = temp.encode("utf-8","ignore")
-                        self.debug.log.debug("HTMLparser1Result - term={{%s}} | startswith '-': %s" % (term, term.startswith('-')))
-                        if term.startswith('-'):
-                            if term[1:] in self.title.lower():
-                                self.debug.log.debug("HTMLparser1Result - {{-%s}} in {{%s}}" % (term[1:], self.title.lower()))
-                                success = False
-                                break
-                        else:
-                            if term not in self.title.lower():
-                                self.debug.log.debug("HTMLparser1Result - {{%s}} not in {{%s}}" % (term, self.title.lower()))
-                                success = False
-                                break
-                    if success:
+                    if common.terms_match(self.title,self.search_terms):
                         self.dict["n"+str(self.cont)] = {}
                         self.dict["n"+str(self.cont)]["title"] = self.title
                         self.dict["n"+str(self.cont)]["link"] = self.link

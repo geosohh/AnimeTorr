@@ -4,7 +4,7 @@
 #define config "config_installer.ini"
 
 #define MyAppName "AnimeTorr"
-#define MyAppVersion "3.3.0.0"
+#define MyAppVersion "3.3.0.1"
 #define MyAppOutputDir "..\dist"
 #define pyinstallerDist "pyinstaller\dist\AnimeTorr"
 #define MyAppPublisher "Sohhla"

@@ -8,6 +8,7 @@ __author__ = 'Sohhla'
 from shared.log import LoggerManager
 import xml.etree.ElementTree as XMLParser
 from datetime import datetime
+import common
 
 
 class NyaaRSS():
@@ -38,15 +39,25 @@ class NyaaRSS():
         if dic is None:
             dic = {}
         search_terms = text.strip().split(" ")
-        url = self.__get_url(text, category)
+        url = self.__get_url(search_terms, category)
         xml = self.network.get_data(url)
         return self.__parse_rss(xml, dic, search_terms)
 
     @staticmethod
-    def __get_url(text, category):
+    def __get_url(search_terms, category):
         url = ""
-        if text!="":
-            text = text.strip().replace(" ","+")
+        if len(search_terms)>0:
+            # Without using quotes (i.e. -"10-bit"), Nyaa reads "10-bit" as "10bit"
+            nyaa_terms = []
+            for term in search_terms:
+                if term.rfind('-')>0:
+                    if term.startswith('-'):
+                        nyaa_terms.append("-\"%s\"" % term[1:])
+                    else:
+                        nyaa_terms.append("\"%s\"" % term[1:])
+                else:
+                    nyaa_terms.append(term)
+            text = "+".join(nyaa_terms)
             url = "www.nyaa.se/?page=rss&term=%s&cats=%s" % (text,category)
         return url
 
@@ -70,19 +81,7 @@ class NyaaRSS():
                     leechers= values[1]  # not yet used...
                     downloads=values[2]
 
-                    success = True
-                    for term in search_terms:
-                        temp = term.strip().lower()
-                        term = temp.encode("utf-8","ignore")
-                        if term[0] is "-":
-                            if term[1:] in title.lower():
-                                success = False
-                                break
-                        else:
-                            if term not in title.lower():
-                                success = False
-                                break
-                    if success:
+                    if common.terms_match(title,search_terms):
                         dic["n"+str(cont)] = {}
                         dic["n"+str(cont)]["title"] = title
                         dic["n"+str(cont)]["link"] = link

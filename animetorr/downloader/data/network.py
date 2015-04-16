@@ -7,7 +7,7 @@ __author__ = 'Sohhla'
 
 import os
 import requests
-from requests.exceptions import ReadTimeout
+from requests.exceptions import ReadTimeout,ConnectTimeout
 from PyQt4 import QtCore
 from shared.log import LoggerManager
 from shared import strings
@@ -56,21 +56,21 @@ class Network():
         while timeout and not self.stopping_thread:
             try:
                 if url.startswith("https"):
-                    response = requests.get(url, timeout=5, verify=constant.CACERT_PATH)
+                    response = requests.get(url, timeout=10, verify=constant.CACERT_PATH)
                 else:
-                    response = requests.get(url, timeout=5)
+                    response = requests.get(url, timeout=10)
                 timeout=False
                 if is_binary:
                     resp = response.content
                 else:
                     resp = response.text
                     #resp = HTMLParser().unescape(response.text)
-            except ReadTimeout:
+            except (ReadTimeout,ConnectTimeout):
                 tries+=1
                 if tries==3:
-                    self.log.warning("Retried 5 times... Will try again later.")
+                    self.log.warning("Retried 3 times... Will try again later.")
                     return ""
-                self.log.debug("Retrying (%i)" %tries)
+                self.log.debug("Retrying (%i)" % tries)
             except Exception as error:
                 self.log.print_traceback(error,self.log.error)
         return resp
@@ -140,7 +140,7 @@ class Network():
             torrent_file_path = "%s\\%s.torrent" % (torrent_path,title)
             with open(torrent_file_path,"wb") as torrent:
                 torrent.write(data)
-            self.log.info(".torrent downloaded")
+            self.log.info(".torrent saved")
             try:
                 application_fullpath = torrent_application.fullpath()
                 self.log.debug("Opening '%s' with '%s'" % (torrent_file_path,application_fullpath))

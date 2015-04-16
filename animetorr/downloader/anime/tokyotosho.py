@@ -7,6 +7,7 @@ __author__ = 'Sohhla'
 import sgmllib
 import datetime
 from shared.log import LoggerManager
+import common
 
 
 class Tokyotosho():
@@ -57,13 +58,9 @@ class Tokyotosho():
             parser.feed(html)
             parser.close()
         except CleanExit:
-            self.log.info("HTML successfully parsed (%i results)" % (len(parser.dict)))
             return parser.dict
         except Exception as error:
             self.log.print_traceback(error,self.log.error)
-        else:
-            self.log.info("HTML successfully parsed (%i results)" % (len(parser.dict)))
-        #return dic
         return parser.dict
 
 
@@ -131,18 +128,7 @@ class HTMLparser(sgmllib.SGMLParser):
             self.date_minute = int(date[date.find(":")+1:])
             self.searching_size_date = False
 
-            success = True
-            for term in self.search_terms:
-                term = term.strip()
-                if term[0] is "-":
-                    if term[1:].lower() in self.title.lower():
-                        success = False
-                        break
-                else:
-                    if term.lower() not in self.title.lower():
-                        success = False
-                        break
-            if success:
+            if common.terms_match(self.title,self.search_terms):
                 self.dict["t"+str(self.cont)] = {}
                 self.dict["t"+str(self.cont)]["title"] = self.title
                 self.dict["t"+str(self.cont)]["link"] = self.link

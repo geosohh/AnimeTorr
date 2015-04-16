@@ -56,7 +56,7 @@ class Downloader(QtCore.QObject):
         Initializes variables necessary to search for new episodes.
         """
         self.log = LoggerManager().get_logger("Downloader")
-        self.log.debug("#######################################################################")
+        self.log.debug("#####################")
 
         self.dbManager = DBManager()
         self.animeList = self.dbManager.get_anime_list()
@@ -78,7 +78,7 @@ class Downloader(QtCore.QObject):
 
         self.running.emit()
 
-        self.log.debug("***********************************************************************")
+        self.log.debug("****************************")
         number_of_downloaded_episodes = self.__search_new_episodes()
         msg = "No" if number_of_downloaded_episodes==0 else str(number_of_downloaded_episodes)
         if not self.stopping_thread:
@@ -122,7 +122,7 @@ class Downloader(QtCore.QObject):
                             else:
                                 regex_episode_and_version_number = re.compile("[\s|_]*(%02d)[\s|_|~|\-]*(\d*)[\s|_]*v?(\d)?" % anime.episode)
                             result = regex_episode_and_version_number.findall(title)
-                            self.log.debug("REGEX result = '%s' (len(result)>0: %s)" % (result, len(result)>0))
+                            #self.log.debug("REGEX result = '%s' (len(result)>0: %s)" % (result, len(result)>0))
                             if len(result)>0:
                                 self.log.info("A torrent has been found")
                                 try:
@@ -147,11 +147,11 @@ class Downloader(QtCore.QObject):
                                         self.showMessage.emit("Error: %s (%s - %s)" % (type(error).__name__,anime.name,anime.episode))
                                     if result:
                                         downloaded_episodes+=1
-                                        self.log.debug("Updating EpisodeNumber")
+                                        #self.log.debug("Updating EpisodeNumber")
                                         anime.update_episode(last_episode_number+1)
-                                        self.log.debug("Updating LastVersionNumber")
+                                        #self.log.debug("Updating LastVersionNumber")
                                         anime.update_version(last_version_number)
-                                        self.log.debug("Updating LastFileDownloaded")
+                                        #self.log.debug("Updating LastFileDownloaded")
                                         anime.update_last_file_downloaded(anime_dictionary[key]["title"])
                                         self.log.debug("Notifying user")
                                         self.update_ui.emit("Found: %s - %s" % (anime.name, anime.episode-1))

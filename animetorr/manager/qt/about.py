@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '../qt/qt_about.ui'
 #
-# Created: Wed Apr 08 23:48:02 2015
+# Created: Wed Apr 15 21:23:51 2015
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -114,13 +114,27 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "About AnimeTorr", None))
         self.label.setText(_translate("Dialog", "<img src=\":/images/images/logo.png\" />", None))
         self.label_2.setText(_translate("Dialog", "AnimeTorr", None))
-        self.label_3.setText(_translate("Dialog", "Version 3.3.0.0 (Apr 08 2015)", None))
+        self.label_3.setText(_translate("Dialog", "Version 3.3.0.1 (Apr 15 2015)", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.aboutTab), _translate("Dialog", "About", None))
         self.changelog_browser.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600;\">Version 3.3.0.0 (Apr 08 2015)</span><span style=\" font-size:10pt;\"><br />     Fixed:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600;\">Version 3.3.0.1 (Apr 15 2015)</span><span style=\" font-size:10pt;\"><br />     Fixed:</span></p>\n"
+"<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
+"<tr>\n"
+"<td></td>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">          </span><img src=\":/images/images/dot.png\" /><span style=\" font-size:10pt;\"> </span></p></td>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Removed unnecessary debug log messages</span></p></td></tr>\n"
+"<tr>\n"
+"<td></td>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">          </span><img src=\":/images/images/dot.png\" /><span style=\" font-size:10pt;\"> </span></p></td>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Search terms using \'-\' are now working again</span></p></td></tr></table>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\"><br /><br /></span><span style=\" font-size:10pt; font-weight:600;\">Version 3.3.0.0 (Apr 08 2015)</span><span style=\" font-size:10pt;\"><br />     Fixed:</span></p>\n"
 "<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
 "<tr>\n"
 "<td></td>\n"
