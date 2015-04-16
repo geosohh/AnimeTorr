@@ -5,7 +5,7 @@ AnimeTorr automatically searches for new anime episodes and downloads them from 
 Download
 --------
 
-You can download the application installer for Windows from [here](https://www.googledrive.com/host/0B8Ged3RdjLn1fkRIYTU5aFYyWWY3MmJGX29SLWphaTNvMldwelBqSXNfdG5DUE5zM2h2UUE).
+Application installer for Windows available [here](https://www.googledrive.com/host/0B8Ged3RdjLn1fkRIYTU5aFYyWWY3MmJGX29SLWphaTNvMldwelBqSXNfdG5DUE5zM2h2UUE).
 
 Running from source
 -------------------
