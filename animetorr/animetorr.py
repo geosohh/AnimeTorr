@@ -83,7 +83,8 @@ class Main(QtCore.QObject):
         except Exception as unforessenError:
             self.log.critical("UNFORESSEN ERROR")
             self.log.print_traceback(unforessenError,self.log.critical)
-            self.show_tray_message("Unforessen error ocurred...")
+            if self.tray_icon is not None:
+                self.show_tray_message("Unforessen error ocurred...")
             exit()
 
     def quit(self):

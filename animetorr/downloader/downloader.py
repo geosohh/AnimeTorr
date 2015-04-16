@@ -118,7 +118,7 @@ class Downloader(QtCore.QObject):
                             self.log.debug("'%s' is a match, checking episode number" % (escape_unicode(anime_dictionary[key]["title"])))
                             title = anime_dictionary[key]["title"]
                             if (".mkv" or ".mp4") in title:
-                                regex_episode_and_version_number = re.compile("[\s|_]*(%02d)[\s|_|~|\-]*(\d*)[\s|_]*v?(\d)?[\s|\w]*[\[|\(]" % anime.episode)
+                                regex_episode_and_version_number = re.compile("[\s|_]*(%02d)[\s|_|~|\-]*(\d*)[\s|_]*v?(\d)?[\s|\w]*[\[|\(|\.mkv|\.mp4]" % anime.episode)
                             else:
                                 regex_episode_and_version_number = re.compile("[\s|_]*(%02d)[\s|_|~|\-]*(\d*)[\s|_]*v?(\d)?" % anime.episode)
                             result = regex_episode_and_version_number.findall(title)
@@ -154,7 +154,7 @@ class Downloader(QtCore.QObject):
                                         #self.log.debug("Updating LastFileDownloaded")
                                         anime.update_last_file_downloaded(anime_dictionary[key]["title"])
                                         self.log.debug("Notifying user")
-                                        self.update_ui.emit("Found: %s - %s" % (anime.name, anime.episode-1))
+                                        self.update_ui.emit("%s - %s" % (anime.name, anime.episode-1))
                                         break
                     except Exception as error:
                         self.log.error("ERROR while analysing '%s'" % escape_unicode(title))

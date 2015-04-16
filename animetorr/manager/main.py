@@ -233,7 +233,7 @@ class AnimeTable(QtGui.QTableWidget):
 
     def __init__(self, parent,main_window):
         super(AnimeTable, self).__init__(parent)
-        #self.log = LoggerManager().get_logger("MainGUI-AnimeTable")
+        #self.setHorizontalHeader(MyHorizontalHeader(self))
 
         #Headers
         self.setColumnCount(3)  #enabled, name, episode
@@ -258,10 +258,13 @@ class AnimeTable(QtGui.QTableWidget):
         self.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.Stretch)
 
         #Sorting
-        self.setSortingEnabled(True)
-        self.horizontalHeader().setSortIndicatorShown(False)
+        #self.setSortingEnabled(True)
+        #self.horizontalHeader().setSortIndicatorShown(False)
+        self.sort_column = 1
+        self.sort_order = QtCore.Qt.AscendingOrder
 
         #Item selection
+        self.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         self.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
 
@@ -271,9 +274,12 @@ class AnimeTable(QtGui.QTableWidget):
         # noinspection PyUnresolvedReferences
         self.itemSelectionChanged.connect(self.item_selection_changed)  # PyCharm doesn't recognize itemSelectionChanged.connect()...
 
+        self.horizontalHeader().sectionClicked.connect(self.header_clicked)
+
         #Other stuff
         self.setCornerButtonEnabled(False)
         self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.text_height = -1
 
         #Table data
         self.data = {}
@@ -282,6 +288,29 @@ class AnimeTable(QtGui.QTableWidget):
         #Used to edit and update main window
         self.main_window = main_window
         self.allow_row_selection = True
+
+    def header_clicked(self,new_sort_column):
+        """
+        Replaces the default behavior when clicking the table header.
+
+        Clicking on one of the header items should sort the table by the data on that column.
+        However, for some reason if the user does this while the scroll bar is not at the top
+        the table gets messed up (i.e. either the data from the first column is pushed down or
+        the data from the other columns get pushed up, not sure which).
+        This is a workaround: first scrolls to the top, then changes sorting.
+
+        :type new_sort_column: int
+        :param new_sort_column: Index of the column to be sorted by.
+        """
+        if self.sort_column != new_sort_column:
+            self.sort_order = QtCore.Qt.AscendingOrder
+            self.sort_column = new_sort_column
+        else:
+            # 0 == QtCore.Qt.AscendingOrder
+            # 1 == QtCore.Qt.DescendingOrder
+            # http://doc.qt.io/qt-5/qt.html#SortOrder-enum
+            self.sort_order = int(not bool(self.sort_order))
+        self.update_table()
 
     def update_anime_enabled(self,anime,checkbox,checkbox_state):
         """
@@ -360,6 +389,7 @@ class AnimeTable(QtGui.QTableWidget):
         :type anime_list: list[Anime]
         :param anime_list: List with all anime.
         """
+        self.scrollToItem(self.item(0,0))
         self.setSortingEnabled(False)  #Re-activated later. Otherwise, The table gets messed up
         self.clearContents()
         if anime_list is not None:
@@ -376,42 +406,47 @@ class AnimeTable(QtGui.QTableWidget):
             if key!=3:
                 for row, item in enumerate(self.data[key]):
                     if type(item)==bool:
-                        checkbox_widget = QtGui.QWidget()
                         checkbox = QtGui.QCheckBox()
                         checkbox.setChecked(item)
                         # noinspection PyUnresolvedReferences
                         checkbox.stateChanged.connect(partial(self.update_anime_enabled,self.data[3][row],checkbox))  # PyCharm doesn't recognize stateChanged.connect()...
-                        layout = QtGui.QHBoxLayout(checkbox_widget)
+                        layout = QtGui.QHBoxLayout()
                         layout.addWidget(checkbox)
                         layout.setAlignment(QtCore.Qt.AlignCenter)
                         layout.setContentsMargins(0,0,0,0)
+                        checkbox_widget = QtGui.QWidget()
                         checkbox_widget.setLayout(layout)
                         self.setCellWidget(row,column,checkbox_widget)
                         newitem = MyTableWidgetItem("",item)  #Used to sort the table
-                        self.setItem(row, column, newitem)
                     else:
                         newitem = MyTableWidgetItem(item,item)
-                        self.setItem(row, column, newitem)
-        for row in range(self.rowCount()):
-            text_height = self.fontMetrics().boundingRect(read_qt_text(self.item(row,1).text())).height()
-            row_height = text_height+12
-            self.setRowHeight(row, row_height)
+                    self.setItem(row, column, newitem)
+        if self.rowCount()>0:
+            if self.text_height==-1:  # Otherwise, for some reason the height changes from the first call to update_table() to the next...
+                self.text_height = self.fontMetrics().boundingRect(read_qt_text(self.item(0,1).text())).height()+12
+            for row in range(self.rowCount()):
+                self.setRowHeight(row, self.text_height)
+            self.sortItems(self.sort_column,self.sort_order)
         self.setSortingEnabled(True)
-        self.sortItems(1,QtCore.Qt.AscendingOrder)  #automatically sort by anime name
+        self.set_items_are_selectable()
 
-    def set_items_are_selectable(self,bool_value):
+    def set_items_are_selectable(self,bool_value=None):
         """
         Enables/disables anime editing/removal.
 
         :param bool_value: If anime editing/removal is allowed or not.
         """
-        self.allow_row_selection = bool_value
+        if bool_value is not None:
+            self.allow_row_selection = bool_value
         if self.allow_row_selection:
             for row in range(0,self.rowCount()): self.cellWidget(row,0).setEnabled(True)
             self.setStyleSheet("")
+            self.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         else:
             for row in range(0,self.rowCount()): self.cellWidget(row,0).setEnabled(False)
             self.setStyleSheet("color: rgb(120, 120, 120);")
+            self.setSelectionMode(QtGui.QAbstractItemView.NoSelection)
+            self.clearSelection()
 
 
 class MyTableWidgetItem(QtGui.QTableWidgetItem):
@@ -420,10 +455,10 @@ class MyTableWidgetItem(QtGui.QTableWidgetItem):
     """
     def __init__(self, text, sort_key):
         QtGui.QTableWidgetItem.__init__(self, text, QtGui.QTableWidgetItem.UserType)
-        try:
+        if type(sort_key)==bool:
             sort_key = int(sort_key)
-        except ValueError:
-            pass
+        elif type(sort_key)==str or type(sort_key)==unicode:
+            sort_key = sort_key.lower()
         self.sort_key = sort_key
 
     def set_key(self,new_sort_key):
