@@ -80,11 +80,11 @@ class Main(QtCore.QObject):
                 self.log.info("STARTING DOWNLOADER")
                 self.start_downloader()
             self.app.exec_()
-        except Exception as unforessenError:
-            self.log.critical("UNFORESSEN ERROR")
-            self.log.print_traceback(unforessenError,self.log.critical)
+        except Exception as unforeseenError:
+            self.log.critical("UNFORESEEN ERROR")
+            self.log.print_traceback(unforeseenError,self.log.critical)
             if self.tray_icon is not None:
-                self.show_tray_message("Unforessen error ocurred...")
+                self.show_tray_message("Unforeseen error occurred...")
             exit()
 
     def quit(self):

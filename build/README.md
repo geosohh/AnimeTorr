@@ -1,7 +1,7 @@
 Requirements
 ------------
 
-To compile into an .exe, install [PyInstaller](https://github.com/pyinstaller/pyinstaller/wiki).
+To compile into an .exe, install [PyInstaller](https://github.com/pyinstaller/pyinstaller/wiki) (version 3.2).
 
 Then to create the installer, install [Inno Setup](http://www.jrsoftware.org/isinfo.php).
 

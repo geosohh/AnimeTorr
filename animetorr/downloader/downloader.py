@@ -118,10 +118,12 @@ class Downloader(QtCore.QObject):
                             self.log.debug("'%s' is a match, checking episode number" % (escape_unicode(anime_dictionary[key]["title"])))
                             title = anime_dictionary[key]["title"]
                             if (".mkv" or ".mp4") in title:
-                                regex_episode_and_version_number = re.compile("[\s|_]*(%02d)[\s|_|~|\-]*(\d*)[\s|_]*v?(\d)?[\s|\w]*[\[|\(|\.mkv|\.mp4]" % anime.episode)
+                                self.log.debug("title = "+title)
+                                regex_episode_and_version_number = re.compile("\\b[\s_~\-+.]?(%02d)[\s_~\-+.]*(\d*)[\s_]*v?(\d)?[\s\w.]*(\[|\(|.mkv|.mp4)" % anime.episode)
                             else:
-                                regex_episode_and_version_number = re.compile("[\s|_]*(%02d)[\s|_|~|\-]*(\d*)[\s|_]*v?(\d)?" % anime.episode)
+                                regex_episode_and_version_number = re.compile("\\b[\s_~\-+.]?(%02d)[\s_~\-+.]*(\d*)[\s_]*v?(\d)?" % anime.episode)
                             result = regex_episode_and_version_number.findall(title)
+                            self.log.debug("regex result = "+str(result))
                             #self.log.debug("REGEX result = '%s' (len(result)>0: %s)" % (result, len(result)>0))
                             if len(result)>0:
                                 self.log.info("A torrent has been found")

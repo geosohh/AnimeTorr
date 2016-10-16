@@ -44,7 +44,7 @@ class WindowAdd():
         self.ui_add.text_name.installEventFilter(self.dialog_add)
         self.ui_add.text_search.installEventFilter(self.dialog_add)
         self.ui_add.text_episode.installEventFilter(self.dialog_add)
-        self.ui_add.checkbox_anime_index.installEventFilter(self.dialog_add)
+        #self.ui_add.checkbox_anime_index.installEventFilter(self.dialog_add)
         self.ui_add.checkbox_anime_tosho.installEventFilter(self.dialog_add)
         self.ui_add.checkbox_anirena.installEventFilter(self.dialog_add)
         self.ui_add.checkbox_nyaa.installEventFilter(self.dialog_add)
@@ -70,17 +70,17 @@ class WindowAdd():
         self.last_text_search_checked = ""
 
         # Requests search
-        self.thread_anime_index = None
+        #self.thread_anime_index = None
         self.thread_anime_tosho = None
         self.thread_anirena = None
         self.thread_nyaa = None
         self.thread_tokyotosho = None
-        self.downloader_anime_index = None
+        #self.downloader_anime_index = None
         self.downloader_anime_tosho = None
         self.downloader_anirena = None
         self.downloader_nyaa = None
         self.downloader_tokyotosho = None
-        self.dict_anime_index = None
+        #self.dict_anime_index = None
         self.dict_anime_tosho = None
         self.dict_anirena = None
         self.dict_nyaa = None
@@ -103,7 +103,7 @@ class WindowAdd():
             self.ui_add.text_search.setText(self.anime_to_edit.search_terms)
             self.last_text_search_checked = self.anime_to_edit.search_terms
             self.ui_add.text_episode.setText(str(self.anime_to_edit.episode))
-            self.ui_add.checkbox_anime_index.setChecked(self.anime_to_edit.check_anime_index)
+            #self.ui_add.checkbox_anime_index.setChecked(self.anime_to_edit.check_anime_index)
             self.ui_add.checkbox_anime_tosho.setChecked(self.anime_to_edit.check_anime_tosho)
             self.ui_add.checkbox_anirena.setChecked(self.anime_to_edit.check_anirena)
             self.ui_add.checkbox_nyaa.setChecked(self.anime_to_edit.check_nyaa)
@@ -112,7 +112,7 @@ class WindowAdd():
             self.ui_add.text_search.setEnabled(True)
             self.ui_add.label_episode.setEnabled(True)
             self.ui_add.text_episode.setEnabled(True)
-            self.ui_add.checkbox_anime_index.setEnabled(True)
+            #self.ui_add.checkbox_anime_index.setEnabled(True)
             self.ui_add.checkbox_anime_tosho.setEnabled(True)
             self.ui_add.checkbox_anirena.setEnabled(True)
             self.ui_add.checkbox_nyaa.setEnabled(True)
@@ -189,7 +189,7 @@ class WindowAdd():
             terms = new_terms
             self.last_text_search_checked = terms
 
-        search_anime_index = self.ui_add.checkbox_anime_index.isChecked()
+        search_anime_index = False  #self.ui_add.checkbox_anime_index.isChecked()
         search_anime_tosho = self.ui_add.checkbox_anime_tosho.isChecked()
         search_anirena    = self.ui_add.checkbox_anirena.isChecked()
         search_nyaa       = self.ui_add.checkbox_nyaa.isChecked()
@@ -205,7 +205,7 @@ class WindowAdd():
             self.ui_add.text_name.setEnabled(False)
             self.ui_add.text_search.setEnabled(False)
             self.ui_add.text_episode.setEnabled(False)
-            self.ui_add.checkbox_anime_index.setEnabled(False)
+            #self.ui_add.checkbox_anime_index.setEnabled(False)
             self.ui_add.checkbox_anime_tosho.setEnabled(False)
             self.ui_add.checkbox_anirena.setEnabled(False)
             self.ui_add.checkbox_nyaa.setEnabled(False)
@@ -228,8 +228,8 @@ class WindowAdd():
         """
         self.search_started()
         self.anime_being_searched = anime
-        if anime.check_anime_index:
-            self.request_search_anime_index(anime)
+        #if anime.check_anime_index:
+        #    self.request_search_anime_index(anime)
         if anime.check_anime_tosho:
             self.request_search_anime_tosho(anime)
         if anime.check_anirena:
@@ -250,47 +250,47 @@ class WindowAdd():
         QtCore.QCoreApplication.processEvents(QtCore.QEventLoop.AllEvents)
 
     # TODO: Three methods for each site... How to make all sites use the same three generic methods?
-    def request_search_anime_index(self,anime):
-        """
-        Creates a new thread to seach on this site.
-
-        :type anime: db.Anime
-        :param anime: Anime to search for.
-        """
-        self.thread_anime_index = QtCore.QThread(self.dialog_add)
-        self.downloader_anime_index = Downloader()
-        self.downloader_anime_index.moveToThread(self.thread_anime_index)
-        self.downloader_anime_index.runningSearch.connect(self.searching_anime_index)
-        self.downloader_anime_index.searchResult.connect(self.results_anime_index)
-        self.downloader_anime_index.finish.connect(self.thread_anime_index.quit)
-        self.thread_anime_index.start()
-        self.dialog_add.request_search_anime_index.connect(self.downloader_anime_index.execute_once_search_anime_index)
-        self.dialog_add.request_search_anime_index.emit(anime)
-    def searching_anime_index(self):
-        """
-        Search started, show "loading" animation on this site's tab.
-        """
-        # noinspection PyUnresolvedReferences
-        self.loading_movie.frameChanged.connect(self.set_tab_anime_index_icon)  # PyCharm doesn't recognize frameChanged.connect()...
-        self.loading_movie.start()
-        self.dialog_add.repaint()
-        QtCore.QCoreApplication.processEvents(QtCore.QEventLoop.AllEvents)
-    def results_anime_index(self,dict_anime_index):
-        """
-        Results returned, update window.
-
-        :type dict_anime_index: dict
-        :param dict_anime_index: Search results.
-        """
-        # noinspection PyUnresolvedReferences
-        self.loading_movie.frameChanged.disconnect(self.set_tab_anime_index_icon)  # PyCharm doesn't recognize frameChanged.disconnect()...
-        self.ui_add.tabWidget.setTabIcon(1,QtGui.QIcon())
-        self.dialog_add.repaint()
-        QtCore.QCoreApplication.processEvents(QtCore.QEventLoop.AllEvents)
-        self.thread_anime_index.quit()
-        self.dict_anime_index = dict_anime_index
-        self.downloader_anime_index = None
-        self.seach_request_completed()
+    # def request_search_anime_index(self,anime):
+    #     """
+    #     Creates a new thread to seach on this site.
+    #
+    #     :type anime: db.Anime
+    #     :param anime: Anime to search for.
+    #     """
+    #     self.thread_anime_index = QtCore.QThread(self.dialog_add)
+    #     self.downloader_anime_index = Downloader()
+    #     self.downloader_anime_index.moveToThread(self.thread_anime_index)
+    #     self.downloader_anime_index.runningSearch.connect(self.searching_anime_index)
+    #     self.downloader_anime_index.searchResult.connect(self.results_anime_index)
+    #     self.downloader_anime_index.finish.connect(self.thread_anime_index.quit)
+    #     self.thread_anime_index.start()
+    #     self.dialog_add.request_search_anime_index.connect(self.downloader_anime_index.execute_once_search_anime_index)
+    #     self.dialog_add.request_search_anime_index.emit(anime)
+    # def searching_anime_index(self):
+    #     """
+    #     Search started, show "loading" animation on this site's tab.
+    #     """
+    #     # noinspection PyUnresolvedReferences
+    #     self.loading_movie.frameChanged.connect(self.set_tab_anime_index_icon)  # PyCharm doesn't recognize frameChanged.connect()...
+    #     self.loading_movie.start()
+    #     self.dialog_add.repaint()
+    #     QtCore.QCoreApplication.processEvents(QtCore.QEventLoop.AllEvents)
+    # def results_anime_index(self,dict_anime_index):
+    #     """
+    #     Results returned, update window.
+    #
+    #     :type dict_anime_index: dict
+    #     :param dict_anime_index: Search results.
+    #     """
+    #     # noinspection PyUnresolvedReferences
+    #     self.loading_movie.frameChanged.disconnect(self.set_tab_anime_index_icon)  # PyCharm doesn't recognize frameChanged.disconnect()...
+    #     self.ui_add.tabWidget.setTabIcon(1,QtGui.QIcon())
+    #     self.dialog_add.repaint()
+    #     QtCore.QCoreApplication.processEvents(QtCore.QEventLoop.AllEvents)
+    #     self.thread_anime_index.quit()
+    #     self.dict_anime_index = dict_anime_index
+    #     self.downloader_anime_index = None
+    #     self.seach_request_completed()
     
     def request_search_anime_tosho(self,anime):
         """
@@ -326,7 +326,7 @@ class WindowAdd():
         """
         # noinspection PyUnresolvedReferences
         self.loading_movie.frameChanged.disconnect(self.set_tab_anime_tosho_icon)  # PyCharm doesn't recognize frameChanged.disconnect()...
-        self.ui_add.tabWidget.setTabIcon(2,QtGui.QIcon())
+        self.ui_add.tabWidget.setTabIcon(1,QtGui.QIcon())
         self.dialog_add.repaint()
         QtCore.QCoreApplication.processEvents(QtCore.QEventLoop.AllEvents)
         self.thread_anime_tosho.quit()
@@ -368,7 +368,7 @@ class WindowAdd():
         """
         # noinspection PyUnresolvedReferences
         self.loading_movie.frameChanged.disconnect(self.set_tab_anirena_icon)  # PyCharm doesn't recognize frameChanged.disconnect()...
-        self.ui_add.tabWidget.setTabIcon(3,QtGui.QIcon())
+        self.ui_add.tabWidget.setTabIcon(2,QtGui.QIcon())
         self.dialog_add.repaint()
         QtCore.QCoreApplication.processEvents(QtCore.QEventLoop.AllEvents)
         self.thread_anirena.quit()
@@ -410,7 +410,7 @@ class WindowAdd():
         """
         # noinspection PyUnresolvedReferences
         self.loading_movie.frameChanged.disconnect(self.set_tab_nyaa_icon)  # PyCharm doesn't recognize frameChanged.disconnect()...
-        self.ui_add.tabWidget.setTabIcon(4,QtGui.QIcon())
+        self.ui_add.tabWidget.setTabIcon(3,QtGui.QIcon())
         self.dialog_add.repaint()
         QtCore.QCoreApplication.processEvents(QtCore.QEventLoop.AllEvents)
         self.thread_nyaa.quit()
@@ -452,7 +452,7 @@ class WindowAdd():
         """
         # noinspection PyUnresolvedReferences
         self.loading_movie.frameChanged.disconnect(self.set_tab_tokyotosho_icon)  # PyCharm doesn't recognize frameChanged.disconnect()...
-        self.ui_add.tabWidget.setTabIcon(5,QtGui.QIcon())
+        self.ui_add.tabWidget.setTabIcon(4,QtGui.QIcon())
         self.dialog_add.repaint()
         QtCore.QCoreApplication.processEvents(QtCore.QEventLoop.AllEvents)
         self.thread_tokyotosho.quit()
@@ -465,8 +465,7 @@ class WindowAdd():
         Search request from a site completed.
         When all requested sites finish, will update the tabs with the results found.
         """
-        if (not self.anime_being_searched.check_anime_index or (self.anime_being_searched.check_anime_index and self.dict_anime_index is not None))      and\
-                (not self.anime_being_searched.check_anime_tosho or (self.anime_being_searched.check_anime_tosho and self.dict_anime_tosho is not None)) and\
+        if (not self.anime_being_searched.check_anime_tosho or (self.anime_being_searched.check_anime_tosho and self.dict_anime_tosho is not None)) and\
                 (not self.anime_being_searched.check_anirena     or (self.anime_being_searched.check_anirena     and self.dict_anirena is not None))     and\
                 (not self.anime_being_searched.check_nyaa        or (self.anime_being_searched.check_nyaa        and self.dict_nyaa is not None))        and\
                 (not self.anime_being_searched.check_tokyotosho  or (self.anime_being_searched.check_tokyotosho  and self.dict_tokyotosho is not None)):
@@ -476,14 +475,14 @@ class WindowAdd():
             list_results_nyaa = []
             list_results_tokyotosho = []
 
-            if self.dict_anime_index is not None:
-                html_anime_index,list_results_anime_index = self.parse_results_anime_index(self.dict_anime_index)
-                self.ui_add.text_results_anime_index.setHtml(html_anime_index)
-                self.ui_add.text_results_anime_index.setEnabled(True)
-                self.ui_add.tab_anime_index.setEnabled(True)
-                self.ui_add.tabWidget.setTabEnabled(self.ui_add.tabWidget.indexOf(self.ui_add.tab_anime_index),True)
-            else:
-                self.ui_add.tabWidget.setTabEnabled(self.ui_add.tabWidget.indexOf(self.ui_add.tab_anime_index),False)
+            # if self.dict_anime_index is not None:
+            #     html_anime_index,list_results_anime_index = self.parse_results_anime_index(self.dict_anime_index)
+            #     self.ui_add.text_results_anime_index.setHtml(html_anime_index)
+            #     self.ui_add.text_results_anime_index.setEnabled(True)
+            #     self.ui_add.tab_anime_index.setEnabled(True)
+            #     self.ui_add.tabWidget.setTabEnabled(self.ui_add.tabWidget.indexOf(self.ui_add.tab_anime_index),True)
+            # else:
+            #     self.ui_add.tabWidget.setTabEnabled(self.ui_add.tabWidget.indexOf(self.ui_add.tab_anime_index),False)
 
             if self.dict_anime_tosho is not None:
                 html_anime_tosho,list_results_anime_tosho = self.parse_results_anime_tosho(self.dict_anime_tosho)
@@ -530,7 +529,7 @@ class WindowAdd():
             self.ui_add.tabWidget.setEnabled(True)
 
             self.anime_being_searched = None
-            self.dict_anime_index = None
+            #self.dict_anime_index = None
             self.dict_anime_tosho = None
             self.dict_anirena = None
             self.dict_nyaa = None
@@ -545,7 +544,7 @@ class WindowAdd():
             self.ui_add.text_search.setEnabled(True)
             self.ui_add.label_episode.setEnabled(True)
             self.ui_add.text_episode.setEnabled(True)
-            self.ui_add.checkbox_anime_index.setEnabled(True)
+            #self.ui_add.checkbox_anime_index.setEnabled(True)
             self.ui_add.checkbox_anime_tosho.setEnabled(True)
             self.ui_add.checkbox_anirena.setEnabled(True)
             self.ui_add.checkbox_nyaa.setEnabled(True)
@@ -562,38 +561,38 @@ class WindowAdd():
                     self.ui_add.button_anime_folder.setEnabled(True)
                     self.ui_add.text_anime_folder.setEnabled(True)
 
-    @staticmethod
-    def parse_results_anime_index(dict_anime_index):
-        """
-        Parse results from this site to generate html and list.
-
-        :type dict_anime_index: dict
-        :param dict_anime_index: Seach results.
-
-        :rtype: str,list[str]
-        :return: html, list with the results' filename.
-        """
-        list_results_anime_index = []
-        if len(dict_anime_index)>0:
-            for result in dict_anime_index:
-                list_results_anime_index.append((dict_anime_index[result]["title"],dict_anime_index[result]["downloads"]))
-            list_results_anime_index.sort(key=lambda x:x[0],reverse=True)
-
-            html_anime_index = "<table style=\"font-family:'MS Shell Dlg 2',monospace; font-size:14\">\
-                              <tr>\
-                              <td style=\"padding-right: 5px;\"><b>Result</b></td>\
-                              <td style=\"padding-left: 5px;\" align=\"center\"><b>Downloads</b></td>\
-                              </tr>"
-            for title,downloads in list_results_anime_index:
-                html_anime_index+="<tr>\
-                                  <td style=\"padding-right: 5px;\">"+title+"</td>\
-                                  <td style=\"padding-left: 5px;\" align=\"center\">"+str(downloads)+"</td>\
-                                  </tr>"
-            html_anime_index+="</table>"
-            list_results_anime_index = [title for title,downloads in list_results_anime_index]
-        else:
-            html_anime_index = "No results."
-        return html_anime_index,list_results_anime_index
+    # @staticmethod
+    # def parse_results_anime_index(dict_anime_index):
+    #     """
+    #     Parse results from this site to generate html and list.
+    #
+    #     :type dict_anime_index: dict
+    #     :param dict_anime_index: Seach results.
+    #
+    #     :rtype: str,list[str]
+    #     :return: html, list with the results' filename.
+    #     """
+    #     list_results_anime_index = []
+    #     if len(dict_anime_index)>0:
+    #         for result in dict_anime_index:
+    #             list_results_anime_index.append((dict_anime_index[result]["title"],dict_anime_index[result]["downloads"]))
+    #         list_results_anime_index.sort(key=lambda x:x[0],reverse=True)
+    #
+    #         html_anime_index = "<table style=\"font-family:'MS Shell Dlg 2',monospace; font-size:14\">\
+    #                           <tr>\
+    #                           <td style=\"padding-right: 5px;\"><b>Result</b></td>\
+    #                           <td style=\"padding-left: 5px;\" align=\"center\"><b>Downloads</b></td>\
+    #                           </tr>"
+    #         for title,downloads in list_results_anime_index:
+    #             html_anime_index+="<tr>\
+    #                               <td style=\"padding-right: 5px;\">"+title+"</td>\
+    #                               <td style=\"padding-left: 5px;\" align=\"center\">"+str(downloads)+"</td>\
+    #                               </tr>"
+    #         html_anime_index+="</table>"
+    #         list_results_anime_index = [title for title,downloads in list_results_anime_index]
+    #     else:
+    #         html_anime_index = "No results."
+    #     return html_anime_index,list_results_anime_index
     @staticmethod
     def parse_results_anime_tosho(dict_anime_tosho):
         """
@@ -839,7 +838,7 @@ class WindowAdd():
             episode_number = int(self.ui_add.text_episode.text())
         except ValueError:
             episode_number = -1
-        search_anime_index = self.ui_add.checkbox_anime_index.isChecked()
+        search_anime_index = False  #self.ui_add.checkbox_anime_index.isChecked()
         search_anime_tosho = self.ui_add.checkbox_anime_tosho.isChecked()
         search_anirena = self.ui_add.checkbox_anirena.isChecked()
         search_nyaa = self.ui_add.checkbox_nyaa.isChecked()
@@ -898,7 +897,7 @@ class WindowAdd():
                 self.main_window.update_anime_table()
                 self.dialog_add.reject()
             else:
-                new_anime = db.Anime(True,name,episode_number,1,search,"",download_folder,search_nyaa,search_tokyotosho)
+                new_anime = db.Anime(True,name,episode_number,1,search,"",download_folder,search_anime_index,search_anime_tosho,search_anirena,search_nyaa,search_tokyotosho)
                 anime_added = db.DBManager().insert_anime(new_anime)
                 if anime_added:
                     self.main_window.update_anime_table()
@@ -928,31 +927,31 @@ class WindowAdd():
         Updates the tab "loading" animation.
         """
         self.ui_add.tabWidget.setTabIcon(0,QtGui.QIcon(self.loading_movie.currentPixmap()))
-    def set_tab_anime_index_icon(self):
-        """
-        Updates the tab "loading" animation.
-        """
-        self.ui_add.tabWidget.setTabIcon(1,QtGui.QIcon(self.loading_movie.currentPixmap()))
+    # def set_tab_anime_index_icon(self):
+    #     """
+    #     Updates the tab "loading" animation.
+    #     """
+    #     self.ui_add.tabWidget.setTabIcon(1,QtGui.QIcon(self.loading_movie.currentPixmap()))
     def set_tab_anime_tosho_icon(self):
         """
         Updates the tab "loading" animation.
         """
-        self.ui_add.tabWidget.setTabIcon(2,QtGui.QIcon(self.loading_movie.currentPixmap()))
+        self.ui_add.tabWidget.setTabIcon(1,QtGui.QIcon(self.loading_movie.currentPixmap()))
     def set_tab_anirena_icon(self):
         """
         Updates the tab "loading" animation.
         """
-        self.ui_add.tabWidget.setTabIcon(3,QtGui.QIcon(self.loading_movie.currentPixmap()))
+        self.ui_add.tabWidget.setTabIcon(2,QtGui.QIcon(self.loading_movie.currentPixmap()))
     def set_tab_nyaa_icon(self):
         """
         Updates the tab "loading" animation.
         """
-        self.ui_add.tabWidget.setTabIcon(4,QtGui.QIcon(self.loading_movie.currentPixmap()))
+        self.ui_add.tabWidget.setTabIcon(3,QtGui.QIcon(self.loading_movie.currentPixmap()))
     def set_tab_tokyotosho_icon(self):
         """
         Updates the tab "loading" animation.
         """
-        self.ui_add.tabWidget.setTabIcon(5,QtGui.QIcon(self.loading_movie.currentPixmap()))
+        self.ui_add.tabWidget.setTabIcon(4,QtGui.QIcon(self.loading_movie.currentPixmap()))
 
     def close_window(self):
         """
@@ -967,7 +966,7 @@ class WindowAdd():
             new_episode_number = int(self.ui_add.text_episode.text())
         except ValueError:
             new_episode_number = -1
-        new_search_anime_index = self.ui_add.checkbox_anime_index.isChecked()
+        #new_search_anime_index = self.ui_add.checkbox_anime_index.isChecked()
         new_search_anime_tosho = self.ui_add.checkbox_anime_tosho.isChecked()
         new_search_anirena = self.ui_add.checkbox_anirena.isChecked()
         new_search_nyaa = self.ui_add.checkbox_nyaa.isChecked()
@@ -980,7 +979,6 @@ class WindowAdd():
             if new_name != self.anime_to_edit.name or \
                     new_search             != self.anime_to_edit.search_terms or \
                    (new_episode_number     != self.anime_to_edit.episode and new_episode_number!=-1) or \
-                    new_search_anime_index != self.anime_to_edit.check_anime_index or \
                     new_search_anime_tosho != self.anime_to_edit.check_anime_tosho or \
                     new_search_anirena     != self.anime_to_edit.check_anirena or \
                     new_search_nyaa        != self.anime_to_edit.check_nyaa or \
@@ -1001,7 +999,7 @@ class WindowAddDialog(QtGui.QDialog):
     Also allow access to the mouse position, which enables the information box to work.
     """
 
-    request_search_anime_index = QtCore.pyqtSignal(object)
+    #request_search_anime_index = QtCore.pyqtSignal(object)
     request_search_anime_tosho = QtCore.pyqtSignal(object)
     request_search_anirena = QtCore.pyqtSignal(object)
     request_search_nyaa = QtCore.pyqtSignal(object)
@@ -1032,8 +1030,8 @@ class WindowAddDialog(QtGui.QDialog):
         if not close_window:
             evnt.ignore()
         else:
-            if self.window.downloader_anime_index is not None:
-                self.window.downloader_anime_index.stop_thread()
+            #if self.window.downloader_anime_index is not None:
+            #    self.window.downloader_anime_index.stop_thread()
             if self.window.downloader_anime_tosho is not None:
                 self.window.downloader_anime_tosho.stop_thread()
             if self.window.downloader_anirena is not None:
@@ -1064,8 +1062,7 @@ class WindowAddDialog(QtGui.QDialog):
                                                    self.window.ui_add.label_search.objectName()]
                 self.information_episode_widgets = [self.window.ui_add.text_episode.objectName(),
                                                     self.window.ui_add.label_episode.objectName()]
-                self.information_sources_widgets = [self.window.ui_add.checkbox_anime_index.objectName(),
-                                                    self.window.ui_add.checkbox_anime_tosho.objectName(),
+                self.information_sources_widgets = [self.window.ui_add.checkbox_anime_tosho.objectName(),
                                                     self.window.ui_add.checkbox_anirena.objectName(),
                                                     self.window.ui_add.checkbox_nyaa.objectName(),
                                                     self.window.ui_add.checkbox_tokyotosho.objectName()]
@@ -1101,7 +1098,6 @@ class WindowAddDialog(QtGui.QDialog):
                 elif obj.objectName() in self.information_sources_widgets:
                     self.window.ui_add.groupbox_information.setTitle("Information: Torrent sources")
                     self.window.ui_add.label_information.setText("<html><head/><body>"
-                                                                 "<p>Anime-Index: <a href=\"http://tracker.anime-index.org\">tracker.anime-index.org</a></p>"
                                                                  "<p>Anime Tosho: <a href=\"www.animetosho.org\">www.animetosho.org</a></p>"
                                                                  "<p>AniRena: <a href=\"www.anirena.com\">www.anirena.com</a></p>"
                                                                  "<p>Nyaa: <a href=\"www.nyaa.se\">www.nyaa.se</a></p>"

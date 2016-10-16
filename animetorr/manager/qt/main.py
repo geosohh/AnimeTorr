@@ -2,8 +2,7 @@
 
 # Form implementation generated from reading ui file '../qt/qt_main.ui'
 #
-# Created: Thu Apr 16 16:25:44 2015
-#      by: PyQt4 UI code generator 4.9.6
+# Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -43,8 +42,8 @@ class Ui_MainWindow(object):
         self.centralwidget.setSizePolicy(sizePolicy)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.verticalLayout_2 = QtGui.QVBoxLayout(self.centralwidget)
-        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setContentsMargins(10, 0, 10, 0)
+        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.buttonsBar = QtGui.QWidget(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Fixed)
@@ -56,8 +55,8 @@ class Ui_MainWindow(object):
         self.buttonsBar.setMaximumSize(QtCore.QSize(500, 70))
         self.buttonsBar.setObjectName(_fromUtf8("buttonsBar"))
         self.horizontalLayout_3 = QtGui.QHBoxLayout(self.buttonsBar)
-        self.horizontalLayout_3.setSpacing(6)
         self.horizontalLayout_3.setContentsMargins(0, 10, 0, 10)
+        self.horizontalLayout_3.setSpacing(6)
         self.horizontalLayout_3.setObjectName(_fromUtf8("horizontalLayout_3"))
         self.button_start = QtGui.QPushButton(self.buttonsBar)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
@@ -154,14 +153,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.button_remove)
         self.verticalLayout_2.addWidget(self.buttonsBar)
         self.layout_table_area = QtGui.QVBoxLayout()
-        self.layout_table_area.setSpacing(0)
         self.layout_table_area.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
         self.layout_table_area.setContentsMargins(-1, 0, -1, -1)
+        self.layout_table_area.setSpacing(0)
         self.layout_table_area.setObjectName(_fromUtf8("layout_table_area"))
         self.verticalLayout_2.addLayout(self.layout_table_area)
         self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.text_anime_status = QtGui.QLabel(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Fixed)
@@ -172,7 +171,7 @@ class Ui_MainWindow(object):
         self.text_anime_status.setMinimumSize(QtCore.QSize(0, 25))
         self.text_anime_status.setMaximumSize(QtCore.QSize(16777215, 25))
         self.text_anime_status.setObjectName(_fromUtf8("text_anime_status"))
-        self.horizontalLayout.addWidget(self.text_anime_status)
+        self.horizontalLayout.addWidget(self.text_anime_status, QtCore.Qt.AlignLeft)
         self.text_downloader_status = QtGui.QLabel(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -183,7 +182,7 @@ class Ui_MainWindow(object):
         self.text_downloader_status.setMaximumSize(QtCore.QSize(16777215, 25))
         self.text_downloader_status.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.text_downloader_status.setObjectName(_fromUtf8("text_downloader_status"))
-        self.horizontalLayout.addWidget(self.text_downloader_status)
+        self.horizontalLayout.addWidget(self.text_downloader_status, QtCore.Qt.AlignRight)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)

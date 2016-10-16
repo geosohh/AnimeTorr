@@ -2,8 +2,7 @@
 
 # Form implementation generated from reading ui file '../qt/qt_options.ui'
 #
-# Created: Thu Apr 16 16:25:45 2015
-#      by: PyQt4 UI code generator 4.9.6
+# Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -151,8 +150,8 @@ class Ui_Dialog(object):
         self.groupBox_3.setFont(font)
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
         self.verticalLayout_6 = QtGui.QVBoxLayout(self.groupBox_3)
-        self.verticalLayout_6.setSpacing(7)
         self.verticalLayout_6.setContentsMargins(-1, 7, -1, -1)
+        self.verticalLayout_6.setSpacing(7)
         self.verticalLayout_6.setObjectName(_fromUtf8("verticalLayout_6"))
         self.groupbox_utorrent_location = QtGui.QGroupBox(self.groupBox_3)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Minimum)

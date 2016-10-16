@@ -2,8 +2,7 @@
 
 # Form implementation generated from reading ui file '../qt/qt_log.ui'
 #
-# Created: Thu Apr 16 16:25:45 2015
-#      by: PyQt4 UI code generator 4.9.6
+# Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -38,8 +37,8 @@ class Ui_Dialog(object):
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/images/icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         self.verticalLayout_2 = QtGui.QVBoxLayout(Dialog)
-        self.verticalLayout_2.setSpacing(10)
         self.verticalLayout_2.setMargin(10)
+        self.verticalLayout_2.setSpacing(10)
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.button_pause = QtGui.QPushButton(Dialog)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
