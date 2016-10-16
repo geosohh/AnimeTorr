@@ -58,7 +58,7 @@ class NyaaRSS():
                 else:
                     nyaa_terms.append(term)
             text = "+".join(nyaa_terms)
-            url = "www.nyaa.se/?page=rss&term=%s&cats=%s" % (text,category)
+            url = "https://www.nyaa.se/?page=rss&term=%s&cats=%s" % (text,category)
         return url
 
     @staticmethod

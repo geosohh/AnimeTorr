@@ -2,8 +2,7 @@
 
 # Form implementation generated from reading ui file '../qt/qt_about.ui'
 #
-# Created: Thu Apr 16 16:25:44 2015
-#      by: PyQt4 UI code generator 4.9.6
+# Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -31,8 +30,8 @@ class Ui_Dialog(object):
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/images/icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         self.verticalLayout_2 = QtGui.QVBoxLayout(Dialog)
-        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setMargin(0)
+        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.tabWidget = QtGui.QTabWidget(Dialog)
         self.tabWidget.setFocusPolicy(QtCore.Qt.NoFocus)
@@ -40,8 +39,8 @@ class Ui_Dialog(object):
         self.aboutTab = QtGui.QWidget()
         self.aboutTab.setObjectName(_fromUtf8("aboutTab"))
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.aboutTab)
-        self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setMargin(0)
+        self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
         spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.verticalLayout_3.addItem(spacerItem)
@@ -80,8 +79,8 @@ class Ui_Dialog(object):
         self.changelogTab = QtGui.QWidget()
         self.changelogTab.setObjectName(_fromUtf8("changelogTab"))
         self.verticalLayout_4 = QtGui.QVBoxLayout(self.changelogTab)
-        self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setMargin(0)
+        self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
         self.changelog_browser = QtGui.QTextBrowser(self.changelogTab)
         self.changelog_browser.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
@@ -93,8 +92,8 @@ class Ui_Dialog(object):
         self.creditsTab = QtGui.QWidget()
         self.creditsTab.setObjectName(_fromUtf8("creditsTab"))
         self.verticalLayout_5 = QtGui.QVBoxLayout(self.creditsTab)
-        self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setMargin(0)
+        self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(_fromUtf8("verticalLayout_5"))
         self.credits_browser = QtGui.QTextBrowser(self.creditsTab)
         self.credits_browser.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
@@ -114,12 +113,40 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "About AnimeTorr", None))
         self.label.setText(_translate("Dialog", "<img src=\":/images/images/logo.png\" />", None))
         self.label_2.setText(_translate("Dialog", "AnimeTorr", None))
-        self.label_3.setText(_translate("Dialog", "Version 3.3.1.0 (Apr 16 2015)", None))
+        self.label_3.setText(_translate("Dialog", "Version 3.3.1.2 (Oct 16 2016)", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.aboutTab), _translate("Dialog", "About", None))
         self.changelog_browser.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600;\">Version 3.3.1.2 (Oct 16 2016)</span><span style=\" font-size:10pt;\"><br />     Fixed:</span></p>\n"
+"<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
+"<tr>\n"
+"<td></td>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">          </span><img src=\":/images/images/dot.png\" /><span style=\" font-size:10pt;\"> </span></p></td>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">[Add Anime] Fixed Nyaa searches</span></p></td></tr></table>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600;\">Version 3.3.1.1 (Sep 22 2016)</span><span style=\" font-size:10pt;\"><br />     Fixed:</span></p>\n"
+"<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
+"<tr>\n"
+"<td></td>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">          </span><img src=\":/images/images/dot.png\" /><span style=\" font-size:10pt;\"> </span></p></td>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">[Add Anime] Search regex mistaking search terms and exceptions</span></p></td></tr></table>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">     Removed:</span></p>\n"
+"<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
+"<tr>\n"
+"<td></td>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">          </span><img src=\":/images/images/dot.png\" /><span style=\" font-size:10pt;\"> </span></p></td>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">[Add Anime] Anime-Index - Wasn\'t working, might bring back later</span></p></td></tr></table>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600;\">Version 3.3.1.0 (Apr 16 2015)</span><span style=\" font-size:10pt;\"><br />     Fixed:</span></p>\n"
 "<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
 "<tr>\n"

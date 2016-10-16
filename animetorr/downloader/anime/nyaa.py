@@ -49,7 +49,7 @@ class Nyaa():
         url = ""
         if text!="":
             text = text.strip().replace(" ","+")
-            url = "www.nyaa.se/?page=search&term=%s&cats=%s" % (text,category)
+            url = "https://www.nyaa.se/?page=search&term=%s&cats=%s" % (text,category)
         return url
 
     def __parse_html_1_result(self, html, dic, search_terms):

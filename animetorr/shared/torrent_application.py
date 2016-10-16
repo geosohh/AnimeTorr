@@ -92,5 +92,8 @@ def is_utorrent():
     :rtype: bool
     :return: If the currently selected application to download torrents is uTorrent or not.
     """
-    app_exe = filename()
-    return app_exe.lower() == "utorrent.exe"
+    try:
+        app_exe = filename()
+        return app_exe.lower() == "utorrent.exe"
+    except WindowsError:
+        return False
